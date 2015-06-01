@@ -1,0 +1,38 @@
+Content:
+
+
+- Registersystem // MySQL
+	- Auto speichern
+	- level & allg. stats speichern
+	- spawn => globaler SPawnpunkt
+- Adminsystem
+	- Kick
+	- Ban
+	- Freeze
+	- Mute
+	- Jail
+	- Spectate player
+	- teleport to player
+	- teleport player
+	- godmode
+	- (noclip)
+	- Ticketsystem
+		- tickets schreiben (normale user)
+		- tickets bearbeiten (admins)
+
+- Spawnsystem
+	- Spawn = 1126.3680,-2036.5743,69.8838,267
+	- gemapptes zeug an den Spawn(was genau ka)
+
+
+- Driftsystem
+	- Drift-Combo Skalierung
+	- Geld für Drifts
+	- bei crash => driftabbruch => kein geld
+
+- Tacho- & Tanksystem
+	- Tachoanzeige
+	- Tankanzeige
+	- an tankstellen mit /fill auftanken (kostenpflichtig)
+	- Kanister kaufen an Tankstellen mit /getfuel
+

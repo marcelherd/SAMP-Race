@@ -1,0 +1,26 @@
+# Gitignore for SA-MP scripting
+
+*.exe
+*.amx
+
+server.cfg
+server_log.txt
+
+include/
+npcmodes/
+scriptfiles/properties/
+scriptfiles/vehicles/
+
+gamemodes/grandlarc.pwn
+
+filterscripts/attachments.pwn
+filterscripts/gl_actions.pwn
+filterscripts/gl_mapicon.pwn
+filterscripts/gl_property.pwn
+filterscripts/gl_realtime.pwn
+filterscripts/ls_beachside.pwn
+filterscripts/ls_elevator.pwn
+filterscripts/ls_mall.pwn
+filterscripts/skinchanger.pwn
+filterscripts/test_cmds.pwn
+filterscripts/vspawner.pwn

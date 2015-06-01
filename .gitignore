@@ -1,5 +1,6 @@
 # Gitignore for SA-MP scripting
 
+*.dll
 *.exe
 *.amx
 
@@ -8,6 +9,7 @@ server_log.txt
 
 include/
 npcmodes/
+
 scriptfiles/properties/
 scriptfiles/vehicles/
 
@@ -24,3 +26,7 @@ filterscripts/ls_mall.pwn
 filterscripts/skinchanger.pwn
 filterscripts/test_cmds.pwn
 filterscripts/vspawner.pwn
+
+pawno/include/
+pawno/settings.ini
+

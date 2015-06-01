@@ -1,0 +1,1 @@
+pawncc.exe "../gamemodes/Race.pwn"

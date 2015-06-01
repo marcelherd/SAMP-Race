@@ -6,7 +6,7 @@ SAMP-Race is a suite of server scripts that aim to provide players a seamless ra
 
 ## Local development
 
-Grab the barebones server structure (for Windows) [here](http://puu.sh/i8lUp/dd34ae7005.rar). Copy the server files into your SAMP-Race repository and you should be good to go. Make sure the filterscripts and the gamemode is set in server.cfg.
+Grab the barebones server structure (for Windows) [here](http://puu.sh/i8ndl/9a580e7fe9.rar). Copy the server files into your SAMP-Race repository and you should be good to go. Make sure the filterscripts and the gamemode is set in server.cfg.
 
 To rebuild the mod simply run pawno/compile.bat.
 

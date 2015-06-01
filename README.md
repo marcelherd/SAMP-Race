@@ -4,6 +4,10 @@ SA-MP (San Andreas Multiplayer) is a game mode for the PC version of Rockstar Ga
 
 SAMP-Race is a suite of server scripts that aim to provide players a seamless racing experience on SA-MP servers.
 
+## Installation
+
+Grab the barebones server structure (for Windows) [here](http://puu.sh/i8lUp/dd34ae7005.rar). Copy the server files into your SAMP-Race repository and you should be good to go. Make sure the filterscripts and the gamemode is set in server.cfg.
+
 ## License
 
 The MIT License (MIT)

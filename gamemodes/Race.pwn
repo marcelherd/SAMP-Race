@@ -1,45 +1,45 @@
-// This is a comment
-// uncomment the line below if you want to write a filterscript
-//#define FILTERSCRIPT
+/*************************************************************
+ * Copyright (c) 2015 Marcel Herd
+ *
+ * Distributed under the MIT License.
+ *
+ * The full license can be reviewed in the LICENSE file, 
+ * distributed with this software.
+ *************************************************************/
 
+ /**
+ * This file defines the gamemode of SAMP-Race.
+ */
+ 
+#include <time>
+ 
 #include <a_samp>
+#include <a_mysql>
 
-#if defined FILTERSCRIPT
-
-public OnFilterScriptInit()
-{
-	print("\n--------------------------------------");
-	print(" Blank Filterscript by your name here");
-	print("--------------------------------------\n");
-	return 1;
-}
-
-public OnFilterScriptExit()
-{
-	return 1;
-}
-
-#else
+#include "../modules/constants"
+#include "../modules/log"
+#include "../modules/persistence/model/admin"
+#include "../modules/persistence/model/player"
+#include "../modules/persistence/database"
 
 main()
 {
 	print("\n----------------------------------");
-	print(" Blank Gamemode by your name here");
+	printf("%s loaded.", GAME_MODE);
 	print("----------------------------------\n");
 }
 
-#endif
-
 public OnGameModeInit()
 {
-	// Don't use these lines if it's a filterscript
-	SetGameModeText("Blank Script");
+	SetGameModeText(GAME_MODE);
+	DatabaseInit();
 	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	return 1;
 }
 
 public OnGameModeExit()
 {
+	DatabaseExit();
 	return 1;
 }
 
@@ -88,11 +88,6 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-	if (strcmp("/mycommand", cmdtext, true, 10) == 0)
-	{
-		// Do something here
-		return 1;
-	}
 	return 0;
 }
 

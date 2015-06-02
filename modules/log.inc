@@ -19,45 +19,52 @@
 	ERROR = 3
  }
  
- forward log(const message[], LOG_LEVEL:logLevel_);
- forward debug_(const message[], const timestamp[]);
- forward info(const message[], const timestamp[]);
- forward warning(const message[], const timestamp[]);
- forward error(const message[], const timestamp[]);
+ forward Log(const message[], LOG_LEVEL:logLevel_);
+ forward Debug_(const message[], const timestamp[]);
+ forward Info(const message[], const timestamp[]);
+ forward Warning(const message[], const timestamp[]);
+ forward Error(const message[], const timestamp[]);
+ forward CreateTimestamp();
  
- stock log(const message[], LOG_LEVEL:logLevel_)
+ stock Log(const message[], LOG_LEVEL:logLevel_)
  {
-	new hours, minutes, seconds;
-	gettime(hours, minutes, seconds);
-	new timestamp[10];
-	format(timestamp, sizeof(timestamp), "%i:%i:%i", hours, minutes, seconds);
-	
 	switch (logLevel_)
 	{
-		case DEBUG_: debug_(message, timestamp);
-		case INFO: info(message, timestamp);
-		case WARNING: warning(message, timestamp);
-		case ERROR: error(message, timestamp);
+		case DEBUG_: Debug_(message, CreateTimestamp());
+		case INFO: Info(message, CreateTimestamp());
+		case WARNING: Warning(message, CreateTimestamp());
+		case ERROR: Error(message, CreateTimestamp());
 	}
  }
  
- stock debug_(const message[], const timestamp[])
+ stock Debug_(const message[], const timestamp[])
  {
 	printf("[DEBUG] (%s) %s", timestamp, message);
  }
  
- stock info(const message[], const timestamp[])
+ stock Info(const message[], const timestamp[])
  {
 	printf("[INFO] (%s) %s", timestamp, message);
  }
  
- stock warning(const message[], const timestamp[])
+ stock Warning(const message[], const timestamp[])
  {
 	printf("[WARNING] (%s) %s", timestamp, message);
  }
  
- stock error(const message[], const timestamp[])
+ stock Error(const message[], const timestamp[])
  {
 	printf("[ERROR] (%s) %s", timestamp, message);
+ }
+ 
+ stock CreateTimestamp()
+ {
+	new hours, minutes, seconds;
+	gettime(hours, minutes, seconds);
+
+	new timestamp[10];
+	format(timestamp, sizeof(timestamp), "%02d:%02d:%02d", hours, minutes, seconds);
+	
+	return timestamp;
  }
  

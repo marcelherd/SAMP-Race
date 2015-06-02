@@ -13,6 +13,7 @@
  
 enum ADMIN_MODEL
 {
+	USER = 0,
 	SUPPORTER = 1,
 	MODERATOR = 2,
 	ADMIN = 3,

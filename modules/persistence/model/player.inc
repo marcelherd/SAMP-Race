@@ -18,8 +18,7 @@ enum PLAYER_MODEL
 	password[MAX_PASSWORD_LENGTH],
 	money,
 	experience,
-	adminLevel,
-	vehicleId,
+	ADMIN_MODEL:adminLevel,
 	bool:banned
 }
 new Player[MAX_PLAYERS][PLAYER_MODEL];

@@ -18,7 +18,7 @@
 
 #define SQL_HOST "127.0.0.1"
 #define SQL_USER "root"
-#define SQL_PASSWORD "123qwe1"
+#define SQL_PASSWORD "123qwe"
 #define SQL_DATABASE "samp"
 
 forward DatabaseInit();

@@ -13,11 +13,15 @@
  
 enum LOG_LEVEL
 {
-	DEBUG_ = 0,
-	INFO = 1,
-	WARNING = 2,
-	ERROR = 3
+	NONE = 0,
+	DEBUG_ = 1,
+	INFO = 2,
+	WARNING = 4,
+	ERROR = 8,
+	DEVELOPER = LOG_LEVEL:DEBUG | LOG_LEVEL:INFO | LOG_LEVEL:WARNING | LOG_LEVEL:ERROR,
+	PRODUCTION = LOG_LEVEL:INFO | LOG_LEVEL:WARNING | LOG_LEVEL:ERROR
 }
+new LOG_LEVEL:ActiveLogLevel = DEVELOPER;
 
 forward Log(const message[], LOG_LEVEL:logLevel_);
 forward Debug_(const message[], const timestamp[]);
@@ -31,15 +35,26 @@ forward CreateTimestamp();
  *	Prints the desired message to stdout with a log level dependant prefix.
  *	The resulting message is displayed as: "[Log Level] (hh:mm:ss) message".
  * </summary>
+ *
+ * <param name="message">
+ *	The message to be printed.
+ * </param>
+ *
+ * <param name="logLevel_">
+ *	The log level that is being printed.
+ * </param>
  */
 stock Log(const message[], LOG_LEVEL:logLevel_)
 {
-	switch (logLevel_)
+	if (logLevel_ & ActiveLogLevel == logLevel_)
 	{
-		case DEBUG_: Debug_(message, CreateTimestamp());
-		case INFO: Info(message, CreateTimestamp());
-		case WARNING: Warning(message, CreateTimestamp());
-		case ERROR: Error(message, CreateTimestamp());
+		switch (logLevel_)
+		{
+			case DEBUG_: Debug_(message, CreateTimestamp());
+			case INFO: Info(message, CreateTimestamp());
+			case WARNING: Warning(message, CreateTimestamp());
+			case ERROR: Error(message, CreateTimestamp());
+		}
 	}
 }
 
@@ -47,6 +62,14 @@ stock Log(const message[], LOG_LEVEL:logLevel_)
  * <summary>
  *	Prints desired mesage with debug prefix and current timestamp as hh:mm:ss.
  * </summary>
+ *
+ * <param name="message">
+ *	The message to be printed.
+ * </param>
+ *
+ * <param name="timestamp">
+ *	Current timestamp.
+ * </param>
  */
 stock Debug_(const message[], const timestamp[])
 {
@@ -57,6 +80,14 @@ stock Debug_(const message[], const timestamp[])
  * <summary>
  *	Prints desired mesage with info prefix and current timestamp as hh:mm:ss.
  * </summary>
+ *
+ * <param name="message">
+ *	The message to be printed.
+ * </param>
+ *
+ * <param name="timestamp">
+ *	Current timestamp.
+ * </param>
  */
 stock Info(const message[], const timestamp[])
 {
@@ -67,6 +98,14 @@ stock Info(const message[], const timestamp[])
  * <summary>
  *	Prints desired mesage with warning prefix and current timestamp as hh:mm:ss.
  * </summary>
+ *
+ * <param name="message">
+ *	The message to be printed.
+ * </param>
+ *
+ * <param name="timestamp">
+ *	Current timestamp.
+ * </param>
  */
 stock Warning(const message[], const timestamp[])
 {
@@ -77,6 +116,14 @@ stock Warning(const message[], const timestamp[])
  * <summary>
  *	Prints desired mesage with error prefix and current timestamp as hh:mm:ss.
  * </summary>
+ *
+ * <param name="message">
+ *	The message to be printed.
+ * </param>
+ *
+ * <param name="timestamp">
+ *	Current timestamp.
+ * </param>
  */
 stock Error(const message[], const timestamp[])
 {

@@ -18,7 +18,7 @@
 
 #define SQL_HOST "127.0.0.1"
 #define SQL_USER "root"
-#define SQL_PASSWORD "123qwe1"
+#define SQL_PASSWORD "123qwe"
 #define SQL_DATABASE "samp"
 
 forward DatabaseInit();
@@ -44,7 +44,7 @@ public DatabaseInit()
 	mysql_log(logLevel);
 	sqlConnection = mysql_connect(SQL_HOST, SQL_USER, SQL_DATABASE, SQL_PASSWORD);
 	
-	if (mysql_errno(sqlConnection) != 0)
+	if (mysql_errno(sqlConnection))
 	{
 		log("Could not establish database connection. Quitting.", LOG_LEVEL:ERROR);
 		SendRconCommand("exit");

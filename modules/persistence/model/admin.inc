@@ -11,10 +11,10 @@
  * This module defines the admin model.
  */
  
- enum ADMIN_MODEL
- {
+enum ADMIN_MODEL
+{
 	SUPPORTER = 1,
 	MODERATOR = 2,
 	ADMIN = 3,
 	SUPERADMIN = 4
- }
+}

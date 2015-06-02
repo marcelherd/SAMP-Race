@@ -11,8 +11,8 @@
  * This module defines the player model.
  */
  
- enum PLAYER_MODEL
- {
+enum PLAYER_MODEL
+{
 	id,
 	name[MAX_PLAYER_NAME],
 	password[MAX_PASSWORD_LENGTH],
@@ -21,5 +21,5 @@
 	adminLevel,
 	vehicleId,
 	bool:banned
- }
- new Player[MAX_PLAYERS][PLAYER_MODEL];
+}
+new Player[MAX_PLAYERS][PLAYER_MODEL];

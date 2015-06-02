@@ -11,8 +11,8 @@
  * This module defines commonly used constants.
  */
  
- #define DEBUG true
+#define DEBUG true
  
- #define GAME_MODE "SAMP-RACE"
+#define GAME_MODE "SAMP-RACE"
  
- #define MAX_PASSWORD_LENGTH 129
+#define MAX_PASSWORD_LENGTH 129

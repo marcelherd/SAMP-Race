@@ -24,9 +24,7 @@
 
 main()
 {
-	print("\n----------------------------------");
-	printf("%s loaded.", GAME_MODE);
-	print("----------------------------------\n");
+	Log("SAMP-Race loaded.", LOG_LEVEL:INFO);
 }
 
 public OnGameModeInit()

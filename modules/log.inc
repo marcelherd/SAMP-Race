@@ -32,8 +32,8 @@ forward CreateTimestamp();
 
 /**
  * <summary>
- *	Prints the desired message to stdout with a log level dependant prefix.
- *	The resulting message is displayed as: "[Log Level] (hh:mm:ss) message".
+ *	Prints the desired message to stdout with prefix consisting of game mode title and log level.
+ *	The resulting message is displayed as: "[Game Mode]-[Log Level]-[hh:mm:ss]: message".
  * </summary>
  *
  * <param name="message">
@@ -73,7 +73,7 @@ stock Log(const message[], LOG_LEVEL:logLevel_)
  */
 stock Debug_(const message[], const timestamp[])
 {
-	printf("[DEBUG] (%s) %s", timestamp, message);
+	printf("[%s]-[DEBUG]-[%s]: %s", GAME_MODE, timestamp, message);
 }
 
 /**
@@ -91,7 +91,7 @@ stock Debug_(const message[], const timestamp[])
  */
 stock Info(const message[], const timestamp[])
 {
-	printf("[INFO] (%s) %s", timestamp, message);
+	printf("[%s]-[INFO]-[%s]: %s", GAME_MODE, timestamp, message);
 }
 
 /**
@@ -109,7 +109,7 @@ stock Info(const message[], const timestamp[])
  */
 stock Warning(const message[], const timestamp[])
 {
-	printf("[WARNING] (%s) %s", timestamp, message);
+	printf("[%s]-[WARNING]-[%s]: %s", GAME_MODE, timestamp, message);
 }
 
 /**
@@ -127,7 +127,7 @@ stock Warning(const message[], const timestamp[])
  */
 stock Error(const message[], const timestamp[])
 {
-	printf("[ERROR] (%s) %s", timestamp, message);
+	printf("[%s]-[ERROR]-[%s]: %s", GAME_MODE, timestamp, message);
 }
 
 /**

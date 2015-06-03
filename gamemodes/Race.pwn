@@ -19,9 +19,10 @@
 #include "../modules/util"
 #include "../modules/constants"
 #include "../modules/log"
-#include "../modules/persistence/model/admin"
 #include "../modules/persistence/model/player"
+#include "../modules/persistence/model/admin"
 #include "../modules/persistence/database"
+#include "../modules/authentication"
 
 main()
 {
@@ -52,11 +53,23 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerConnect(playerid)
 {
+	GetPlayerName(playerid, Name[playerid], sizeof(Name));
+	GetPlayerIp(playerid, IP[playerid], sizeof(IP));
+	
+	new joinMessage[45];
+	format(joinMessage, sizeof(joinMessage), "User %s (%s) connected.", Name[playerid], IP[playerid]);
+	Log(joinMessage, LOG_LEVEL:INFO);
+	
+	HandlePlayerAuthentication(playerid);
 	return 1;
 }
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	new leaveMessage[45];
+	format(leaveMessage, sizeof(leaveMessage), "User %s (%s) disconnected.", Name[playerid], IP[playerid]);
+	Log(leaveMessage, LOG_LEVEL:INFO);
+	
 	return 1;
 }
 

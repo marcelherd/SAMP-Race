@@ -22,3 +22,5 @@ enum PLAYER_MODEL
 	bool:banned
 }
 new Player[MAX_PLAYERS][PLAYER_MODEL];
+new Name[MAX_PLAYERS][MAX_PLAYER_NAME];
+new IP[MAX_PLAYERS][16];

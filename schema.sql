@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `samp`.`player`;
+
 CREATE TABLE `samp`.`player` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(24) NOT NULL,

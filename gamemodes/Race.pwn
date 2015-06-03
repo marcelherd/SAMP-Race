@@ -16,6 +16,7 @@
 #include <a_samp>
 #include <a_mysql>
 
+#include "../modules/util"
 #include "../modules/constants"
 #include "../modules/log"
 #include "../modules/persistence/model/admin"

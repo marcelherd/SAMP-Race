@@ -49,6 +49,12 @@ public DatabaseInit()
 		Log("Could not establish database connection. Quitting.", LOG_LEVEL:ERROR);
 		SendRconCommand("exit");
 	}
+	else
+	{
+		new message[45];
+		format(message, sizeof(message), "MySQL connection successful (%s@%s)", SQL_USER, SQL_HOST);
+		Log(message, LOG_LEVEL:INFO);
+	}
 }
 
 /**

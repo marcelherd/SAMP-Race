@@ -21,7 +21,12 @@ enum LOG_LEVEL
 	DEVELOPER = LOG_LEVEL:DEBUG | LOG_LEVEL:INFO | LOG_LEVEL:WARNING | LOG_LEVEL:ERROR,
 	PRODUCTION = LOG_LEVEL:INFO | LOG_LEVEL:WARNING | LOG_LEVEL:ERROR
 }
-new LOG_LEVEL:ActiveLogLevel = DEVELOPER;
+#if DEBUG
+	new LOG_LEVEL:ActiveLogLevel = DEVELOPER;
+#else
+	new LOG_LEVEL:ActiveLogLevel = PRODUCTION;
+#endif
+
 
 forward Log(const message[], LOG_LEVEL:logLevel_);
 forward Debug_(const message[], const timestamp[]);

@@ -61,15 +61,29 @@ public OnPlayerConnect(playerid)
 	format(joinMessage, sizeof(joinMessage), "User %s (%s) connected.", Name[playerid], IP[playerid]);
 	Log(joinMessage, LOG_LEVEL:INFO);
 	
+	format(joinMessage, sizeof(joinMessage), "%s connected.", Name[playerid]);
+	SendClientMessageToAll(COLOR_RED, joinMessage);
+	
 	HandlePlayerAuthentication(playerid);
 	return 1;
 }
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	new leaveMessage[45];
-	format(leaveMessage, sizeof(leaveMessage), "User %s (%s) disconnected.", Name[playerid], IP[playerid]);
+	new reasonString[16];
+	switch (reason)
+	{
+		case 0: reasonString = "Timeout";
+		case 1: reasonString = "Quit";
+		case 2: reasonString = "Kicked";
+	}
+
+	new leaveMessage[60];
+	format(leaveMessage, sizeof(leaveMessage), "User %s (%s) disconnected. (%s)", Name[playerid], IP[playerid], reasonString);
 	Log(leaveMessage, LOG_LEVEL:INFO);
+	
+	format(leaveMessage, sizeof(leaveMessage), "%s disconnected. (%s)", Name[playerid], reasonString);
+	SendClientMessageToAll(COLOR_RED, leaveMessage);
 	
 	return 1;
 }

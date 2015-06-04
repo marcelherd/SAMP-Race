@@ -9,12 +9,19 @@
  
 /**
  * This module implements player registration and login.
+ *
+ * Password hashing is done using Johnson_boy's Bcrypt for SA-MP plugin v2.2.3.
+ * Plugin information: http://forum.sa-mp.com/showthread.php?t=453544
+ * Visit the Wiki on information on how to use the plugin.
  */
  
 forward HandlePlayerAuthentication(playerid);
 forward ExistingUserCallback(playerid);
 forward HandlePlayerRegistration(playerid);
 forward PlayerRegistrationCallback(playerid);
+forward HandlePlayerLogin(playerid, enteredPassword[]);
+forward PlayerLoginCallback(playerid, enteredPassword[]);
+forward PlayerLoginCheckCallback(playerid);
 
 /**
  * <summary>
@@ -53,12 +60,12 @@ public ExistingUserCallback(playerid)
 	if (!rows)
 	{
 		// New user, register here
-		ShowPlayerDialog(playerid, DIALOG_REGISTRATION, DIALOG_STYLE_INPUT, "Welcome to our server", "Enter a password below to register:", "Register", "Quit");
+		ShowPlayerDialog(playerid, DIALOG_REGISTRATION, DIALOG_STYLE_INPUT, "Welcome to our server", "{FFFFFF}Enter a password below to register:", "Register", "Quit");
 	}
 	else
 	{
 		// Existing user, login here
-		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Welcome back", "Enter your password below:", "Login", "Quit");
+		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Welcome back", "{FFFFFF}Enter your password below:", "Login", "Quit");
 	}
 }
 
@@ -89,4 +96,48 @@ public PlayerRegistrationCallback(playerid)
 	format(registeredMessage, sizeof(registeredMessage), "User %s has been registered.", Name[playerid]);
 	Log(registeredMessage, LOG_LEVEL:INFO);
 	SendClientMessage(playerid, COLOR_RED, "Your account has been registered successfully.");
+}
+
+public HandlePlayerLogin(playerid, enteredPassword[])
+{
+	new query[140];
+	mysql_format(sqlConnection, query, sizeof(query),
+		"SELECT password FROM player WHERE name='%e'",
+		Name[playerid]);
+	Log(query, LOG_LEVEL:DEBUG);
+	
+	new success = mysql_tquery(sqlConnection, query, "PlayerLoginCallback", "ds", playerid, enteredPassword);
+	
+	if (!success)
+	{
+		new queryFailMessage[160];
+		format(queryFailMessage, sizeof(queryFailMessage), "Query failed:\n%s", query);
+		Log(queryFailMessage, LOG_LEVEL:ERROR);
+	}
+}
+
+public PlayerLoginCallback(playerid, enteredPassword[])
+{
+	new rows, fields;
+	new storedPassword[BCRYPT_HASH_LENGTH];
+	cache_get_data(rows, fields, sqlConnection);
+	cache_get_field_content(0, "password", storedPassword, sqlConnection, sizeof(storedPassword));
+	
+	bcrypt_check(enteredPassword, storedPassword, "PlayerLoginCheckCallback", "d", playerid);
+}
+
+public PlayerLoginCheckCallback(playerid)
+{
+	if (bcrypt_is_equal())
+	{
+		SendClientMessage(playerid, COLOR_RED, "You have been logged in successfully.");
+		
+		new loggedInMessage[45];
+		format(loggedInMessage, sizeof(loggedInMessage), "User %s has logged in.", Name[playerid]);
+		Log(loggedInMessage, LOG_LEVEL:INFO);
+	}
+	else
+	{
+		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Welcome back", "{FF0000}ERROR: Invalid password\n{FFFFFF}Enter your password below:", "Login", "Quit");
+	}
 }

@@ -249,6 +249,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		case DIALOG_LOGIN:
 		{
+			if (!response) return Kick(playerid); // Quit button pressed
+			HandlePlayerLogin(playerid, inputtext);
 			return 1;
 		}
 		case DIALOG_REGISTRATION:

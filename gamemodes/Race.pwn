@@ -15,6 +15,7 @@
  
 #include <a_samp>
 #include <a_mysql>
+#include <a_bcrypt>
 
 #include "../modules/util"
 #include "../modules/constants"

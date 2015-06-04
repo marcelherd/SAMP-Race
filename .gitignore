@@ -1,6 +1,5 @@
 # Gitignore for SA-MP scripting
 
-*.dll
 *.exe
 *.amx
 
@@ -8,26 +7,29 @@ server.cfg
 server_log.txt
 mysql_log.txt
 
-include/
-npcmodes/
+/include/
+/npcmodes/
 
-scriptfiles/properties/
-scriptfiles/vehicles/
+/scriptfiles/properties/
+/scriptfiles/vehicles/
 
-gamemodes/grandlarc.pwn
+/gamemodes/grandlarc.pwn
 
-filterscripts/attachments.pwn
-filterscripts/gl_actions.pwn
-filterscripts/gl_mapicon.pwn
-filterscripts/gl_property.pwn
-filterscripts/gl_realtime.pwn
-filterscripts/ls_beachside.pwn
-filterscripts/ls_elevator.pwn
-filterscripts/ls_mall.pwn
-filterscripts/skinchanger.pwn
-filterscripts/test_cmds.pwn
-filterscripts/vspawner.pwn
+/filterscripts/attachments.pwn
+/filterscripts/gl_actions.pwn
+/filterscripts/gl_mapicon.pwn
+/filterscripts/gl_property.pwn
+/filterscripts/gl_realtime.pwn
+/filterscripts/ls_beachside.pwn
+/filterscripts/ls_elevator.pwn
+/filterscripts/ls_mall.pwn
+/filterscripts/skinchanger.pwn
+/filterscripts/test_cmds.pwn
+/filterscripts/vspawner.pwn
 
-pawno/include/
-pawno/settings.ini
+/pawno/*.dll
+/pawno/settings.ini
+/pawno/include/*
 
+!/pawno/include/a_mysql.inc
+!/pawno/include/a_bcrypt.inc

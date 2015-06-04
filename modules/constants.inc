@@ -16,3 +16,5 @@
 #define GAME_MODE "SAMP-RACE"
  
 #define MAX_PASSWORD_LENGTH 129
+
+#define BCRYPT_COST 12

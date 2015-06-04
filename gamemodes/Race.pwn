@@ -231,7 +231,21 @@ public OnVehicleStreamOut(vehicleid, forplayerid)
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
-	return 1;
+	switch (dialogid)
+	{
+		case DIALOG_LOGIN:
+		{
+			return 1;
+		}
+		case DIALOG_REGISTRATION:
+		{
+			if (!response) return Kick(playerid); // Quit button pressed
+			bcrypt_hash(inputtext, BCRYPT_COST, "HandlePlayerRegistration", "d", playerid);
+			return 1;
+		}
+	}
+	
+	return 0;
 }
 
 public OnPlayerClickPlayer(playerid, clickedplayerid, source)

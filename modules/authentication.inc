@@ -13,6 +13,8 @@
  
 forward HandlePlayerAuthentication(playerid);
 forward ExistingUserCallback(playerid);
+forward HandlePlayerRegistration(playerid);
+forward PlayerRegistrationCallback(playerid);
 
 /**
  * <summary>
@@ -37,7 +39,7 @@ public HandlePlayerAuthentication(playerid)
 	
 	if (!success)
 	{
-		new queryFailMessage[45];
+		new queryFailMessage[145];
 		format(queryFailMessage, sizeof(queryFailMessage), "Query failed:\n%s", query);
 		Log(queryFailMessage, LOG_LEVEL:ERROR);
 	}
@@ -51,9 +53,40 @@ public ExistingUserCallback(playerid)
 	if (!rows)
 	{
 		// New user, register here
+		ShowPlayerDialog(playerid, DIALOG_REGISTRATION, DIALOG_STYLE_INPUT, "Welcome to our server", "Enter a password below to register:", "Register", "Quit");
 	}
 	else
 	{
 		// Existing user, login here
+		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Welcome back", "Enter your password below:", "Login", "Quit");
 	}
+}
+
+public HandlePlayerRegistration(playerid)
+{
+	new hashedPassword[BCRYPT_HASH_LENGTH];
+	bcrypt_get_hash(hashedPassword);
+	
+	new query[140];
+	mysql_format(sqlConnection, query, sizeof(query),
+		"INSERT INTO player (name, password) VALUES ('%e', '%e')",
+		Name[playerid], hashedPassword);
+	Log(query, LOG_LEVEL:DEBUG);
+	
+	new success = mysql_tquery(sqlConnection, query, "PlayerRegistrationCallback", "d", playerid);
+	
+	if (!success)
+	{
+		new queryFailMessage[160];
+		format(queryFailMessage, sizeof(queryFailMessage), "Query failed:\n%s", query);
+		Log(queryFailMessage, LOG_LEVEL:ERROR);
+	}
+}
+
+public PlayerRegistrationCallback(playerid)
+{
+	new registeredMessage[45];
+	format(registeredMessage, sizeof(registeredMessage), "User %s has been registered.", Name[playerid]);
+	Log(registeredMessage, LOG_LEVEL:INFO);
+	SendClientMessage(playerid, COLOR_RED, "Your account has been registered successfully.");
 }

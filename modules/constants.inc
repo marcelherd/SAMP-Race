@@ -14,6 +14,11 @@
 #define DEBUG true
  
 #define GAME_MODE "SAMP-RACE"
+
+#define DIALOG_LOGIN 1
+#define DIALOG_REGISTRATION 2
+
+#define COLOR_RED 0xFF0000FF
  
 #define MAX_PASSWORD_LENGTH 129
 

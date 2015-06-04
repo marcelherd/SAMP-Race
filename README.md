@@ -6,7 +6,15 @@ SAMP-Race is a suite of server scripts that aim to provide players a seamless ra
 
 ## Local development
 
-Grab the barebones server structure (for Windows) [here](http://puu.sh/i8ndl/9a580e7fe9.rar). Copy the server files into your SAMP-Race repository and you should be good to go. Make sure the filterscripts and the gamemode is set in server.cfg.
+Clone the repository and copy the SA-MP server files into the root directory. The server.cfg should contain
+
+```
+gamemode0 Race 1
+filterscripts gl_actions gl_realtime gl_property gl_mapicon ls_elevator attachments skinchanger vspawner test_cmds ls_mall ls_beachside
+plugins mysql bcrypt-samp
+```
+
+Make sure to change the default RCON password or the server won't start.
 
 To rebuild the mod simply run pawno/compile.bat.
 

@@ -15,7 +15,6 @@ enum PLAYER_MODEL
 {
 	id,
 	name[MAX_PLAYER_NAME],
-	password[MAX_PASSWORD_LENGTH],
 	money,
 	experience,
 	ADMIN_MODEL:adminLevel,

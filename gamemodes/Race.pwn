@@ -12,6 +12,7 @@
  */
  
 #include <time>
+#include <string>
  
 #include <a_samp>
 #include <a_mysql>
@@ -256,6 +257,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		case DIALOG_REGISTRATION:
 		{
 			if (!response) return Kick(playerid); // Quit button pressed
+			if ((strlen(inputtext) < MIN_PASSWORD_LENGTH) || (strlen(inputtext) > MAX_PASSWORD_LENGTH))
+			{
+				new dialogMessage[128];
+				format(dialogMessage, sizeof(dialogMessage), "{FF0000}ERROR: Password must be between %i and %i characters\n{FFFFFF}Enter a password below to register:", 
+					MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH);
+				ShowPlayerDialog(playerid, DIALOG_REGISTRATION, DIALOG_STYLE_INPUT, "Welcome to our server", dialogMessage, "Register", "Quit");
+				return 1;
+			}
 			bcrypt_hash(inputtext, BCRYPT_COST, "HandlePlayerRegistration", "d", playerid);
 			return 1;
 		}
